@@ -50,17 +50,17 @@ POINT start[3]{{750,330}, {1190,330}, {970,200}};
 txPolygon (start, 3);
 }
 
-void drawMan(int x,int y)
+void drawMan(int x,int y,float razm)
 {
    //человек X=570   y=365
     txSetFillColor(TX_BLACK);
     txSetColor(TX_BLACK);
-    txCircle(x+570-570,y+365-365,15);
-    txLine  (x+540-570,y+560-365,x+570-570,y+450-365);
-    txLine  (x+590-570,y+560-365,x+570-570,y+450-365);
-    txLine  (x+570-570,y+450-365,x+570-570,y+380-365);
-    txLine  (x+610-570,y+440-365,x+570-570,y+380-365);
-    txLine  (x+530-570,y+440-365,x+570-570,y+380-365);
+    txCircle(x,y,15*razm);
+    txLine  (x+30*razm,y+195*razm,x,y+85*razm);
+    txLine  (x-30*razm,y+195*razm,x,y+85*razm);
+    txLine  (x,y+85*razm,x,y+15*razm);
+    txLine  (x+40*razm,y+75*razm,x,y+15*razm);
+    txLine  (x-40*razm,y+75*razm,x,y+15*razm);
 }
 
 void drawCar(int x,int y)
@@ -154,6 +154,7 @@ void drawWall()
     }
     void drawChair()
     {
+    txSetColor(TX_BLACK,5);
     txLine(350,655,350,420);
     txLine(370,640,370,540);
     txLine(440,540,440,650);
@@ -168,6 +169,8 @@ void drawWall()
 
     void drawTable()
     {
+    txSetFillColor(TX_ORANGE);
+    txSetColor(TX_BLACK,5);
     txLine(470,660,470,500);
     txLine(530,500,530,600);
     txLine(670,660,670,500);
@@ -187,6 +190,8 @@ void drawWall()
    }
     void drawPLate()
     {
+    txSetColor(TX_GREY,5);
+    txSetFillColor(TX_GREY);
     txCircle(540,430,10);
     }
 
@@ -211,28 +216,9 @@ txCreateWindow (1200, 800);
     int yMan = 365;
     int xCar = 160;
     int yCar = 480;
+    float razmMan = 1;
 
-
-    while(xSun < 560)
-    {
-        txBegin();
-        drawSky();
-        drawLand();
-        for(int x=50; x<1200; x+=150)
-        {
-            drawWood (x,500);
-        }
-        drawSun(xSun,ySun);
-        drawHouse();
-        drawMan(xMan,yMan);
-        drawCar(xCar,yCar);
-        xSun+=5;
-        ySun-=1;
-        xCar-=1;
-        txEnd();
-        txSleep(10);
-    }
-    while(xSun < 1120)
+    while(xMan < 1100)
     {
         txBegin();
         drawSky();
@@ -243,30 +229,9 @@ txCreateWindow (1200, 800);
             drawWood (x,500);
         }
         drawHouse();
-        drawMan(xMan,yMan);
-        drawCar(xCar,yCar);
-        xSun+=5;
-        ySun+=1;
-        xCar-=10;
-        txEnd();
-        txSleep(10);
-    }
-
-    while(xMan < 1200)
-    {
-        txBegin();
-        drawSky();
-        drawLand();
-        drawSun(xSun,ySun);
-        for(int x=50; x<1200; x+=150)
-        {
-            drawWood (x,500);
-        }
-        drawHouse();
-        drawMan(xMan,yMan);
+        drawMan(xMan,yMan,razmMan);
         drawCar(xCar,yCar);
         xMan+=5;
-        yMan+=1;
         txEnd();
         txSleep(10);
     }
@@ -276,11 +241,13 @@ txCreateWindow (1200, 800);
     drawDoor();
     drawClock();
     drawWindow();
-    drawChair();
     drawTable();
+    drawMan(xMan,yMan,1.5);
     drawSpoon();
+    drawChair();
     drawPLate();
     drawKey();
+
 
 txTextCursor (false);
 return 0;
