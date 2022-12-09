@@ -182,8 +182,8 @@ void drawWall()
     txPolygon(table2, 4);
     }
    void drawSpoon(int x,int y)
-   {
    //x=535, y=450
+   {
    txSetColor(TX_GREY,5);
    txSetFillColor(TX_GREY);
    txLine(x-25,y,x-5,y);
