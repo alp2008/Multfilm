@@ -70,7 +70,7 @@ void drawCar(int x,int y)
   //машина
 txSetColor(TX_BLACK);
 txSetFillColor(TX_GREY);
-POINT car[7]{{x+160-160,y+530-480}, {x+160-160,y+480-480}, {x+210-160,y+450-480}, {x+240-160,y+390-480}, {x+430-160,y+390-480}, {x+470-160,y+450-480}, {x+470-160,y+530-480}};
+POINT car[7]{{x,y+50}, {x,y}, {x+50,y-30}, {x+80,y-90}, {x+270,y-90}, {x+310,y-30}, {x+310,y+50}};
 txPolygon (car, 7);
 //окно машины
 txSetColor(TX_BLACK);
@@ -196,14 +196,15 @@ void drawWall()
     txCircle(540,430,10);
     }
 
-    void drawKey()
+    void drawKey(int x,int y)
     {
+    //x=550,y=630
     txSetFillColor(TX_BROWN);
     txSetColor(TX_BLACK,3);
-    txCircle(550,630,5);
-    txLine(550,630,580,630);
-    txLine(580,630,580,635);
-    txLine(575,630,575,633);
+    txCircle(x,y,5);
+    txLine(x,y,x+30,y);
+    txLine(x+30,y,x+30,y+5);
+    txLine(x+25,y,x+25,y+3);
     }
 
 
@@ -219,6 +220,8 @@ txCreateWindow (1200, 800);
     int yCar = 480;
     int xSpoon=535;
     int ySpoon=450;
+    int xKey=550;
+    int yKey=630;
     float razmMan = 1;
 
 while(xMan < 1100)
@@ -252,7 +255,7 @@ while(xMan > 500)
     drawChair();
     xMan-=10;
     drawPLate();
-    drawKey();
+    drawKey(xKey,yKey);
     drawMan(xMan,yMan,1.5);
     txEnd();
     txSleep(10);
@@ -271,11 +274,75 @@ while(xMan < 501 , ySpoon < 660)
     drawChair();
     ySpoon+=7;
     drawPLate();
-    drawKey();
+    drawKey(xKey,yKey);
     drawMan(xMan,yMan,1.5);
     txEnd();
     txSleep(10);
     }
+
+
+    while(yMan < 500)
+    {
+    txBegin();
+    drawWall();
+    drawFloor();
+    drawDoor();
+    drawClock();
+    drawWindow();
+    drawTable();
+    drawSpoon(xSpoon,ySpoon);
+    drawChair();
+    drawPLate();
+    drawKey(xKey,yKey);
+    drawMan(xMan,yMan,1.5);
+    txEnd();
+    yMan+=10;
+    txSleep(10);
+    }
+
+    while(yKey > 620)
+    {
+    txBegin();
+    drawWall();
+    drawFloor();
+    drawDoor();
+    drawClock();
+    drawWindow();
+    drawTable();
+    drawSpoon(xSpoon,ySpoon);
+    drawChair();
+    drawPLate();
+    drawKey(xKey,yKey);
+    yKey-=3;
+    drawMan(xMan,yMan,1.5);
+    txEnd();
+    txSleep(10);
+    }
+
+    while()
+    {
+    txBegin();
+    drawWall();
+    drawFloor();
+    drawDoor();
+    drawClock();
+    drawWindow();
+    drawTable();
+    drawSpoon(xSpoon,ySpoon);
+    drawChair();
+    drawPLate();
+    drawKey(xKey,yKey);
+    drawMan(xMan,yMan,1.5);
+    txEnd();
+    /*xMan
+    yMan
+    xKey
+    yKey*/
+    txSleep(10);
+    }
+
+
+
 
 txTextCursor (false);
 return 0;
