@@ -207,7 +207,27 @@ void drawWall()
     txLine(x+25*razm,y,x+25*razm,y+3*razm);
     }
 
+    //void drawtext (int x,int y)
+    void drawLand2()
+    {
+    txSetColor(TX_GREEN);
+    txSetFillColor(TX_GREEN);
+    txRectangle(0,500,1200,800);
+    }
 
+    void drawRoad()
+    {
+    txSetColor(TX_BLACK,5);
+    txSetFillColor(TX_GREY);
+    txRectangle(0,580,1200,680);
+    txSetColor(TX_WHITE,5);
+    txSetFillColor(TX_WHITE);
+    txRectangle(100,620,250,625);
+    txRectangle(300,620,450,625);
+    txRectangle(500,620,65,625);
+    txRectangle(550,620,700,625);
+
+    }
 int main()
 {
 txCreateWindow (1200, 800);
@@ -224,7 +244,7 @@ txCreateWindow (1200, 800);
     int yKey=630;
     float razmMan = 1;
     float razmKey = 1;
-while(xMan < 1100)
+    while(xMan < 1100)
     {
         txBegin();
         drawSky();
@@ -242,7 +262,7 @@ while(xMan < 1100)
         txSleep(10);
     }
 
-while(xMan > 500)
+    while(xMan > 500)
     {
     txBegin();
     drawWall();
@@ -261,7 +281,7 @@ while(xMan > 500)
     txSleep(10);
     }
 
-while(xMan < 501 , ySpoon < 660)
+    while(xMan < 501 , ySpoon < 660)
     {
     txBegin();
     drawWall();
@@ -321,6 +341,7 @@ while(xMan < 501 , ySpoon < 660)
 
     while(xMan < 1000)
     {
+
     txBegin();
     drawWall();
     drawFloor();
@@ -354,14 +375,14 @@ while(xMan < 501 , ySpoon < 660)
         drawMan(xMan,yMan,razmMan);
         drawKey(xKey,yKey,0.5);
         drawCar(xCar,yCar);
-        yKey-=9;
-        xKey-=2;
+        yKey=480;
+        xKey=1030;
         txEnd();
         txSleep(0);
 
     }
-    
-     while(yKey > 480)
+
+     while(xMan > 300)
     {
         txBegin();
         drawSky();
@@ -372,13 +393,43 @@ while(xMan < 501 , ySpoon < 660)
             drawWood (x,500);
         }
         drawHouse();
+        drawCar(xCar,yCar);
         drawMan(xMan,yMan,razmMan);
         drawKey(xKey,yKey,0.5);
+        xMan-=6;
+        xKey-=6;
+        txEnd();
+        txSleep(0);
+
+    }
+     while(xCar > -400)
+    {
+        txBegin();
+        drawSky();
+        drawLand();
+        drawSun(xSun,ySun);
+        for(int x=50; x<1200; x+=150)
+        {
+            drawWood (x,500);
+        }
+        drawHouse();
         drawCar(xCar,yCar);
-        xMan+=5;
-        yMan-=1;
-        xKey+=5;
-        yKey-=1; 
+        xCar-=10;
+        txEnd();
+        txSleep(0);
+
+    }
+    while(xCar < 1600)
+    {
+        txBegin();
+        drawSky();
+        drawLand2();
+        drawRoad();
+        drawSun(xSun,ySun);
+        for(int x=50; x<1200; x+=200)
+        {
+            drawWood (x,500);
+        }
         txEnd();
         txSleep(0);
 
