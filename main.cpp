@@ -196,15 +196,15 @@ void drawWall()
     txCircle(540,430,10);
     }
 
-    void drawKey(int x,int y)
+    void drawKey(int x,int y,float razm)
     {
     //x=550,y=630
     txSetFillColor(TX_BROWN);
     txSetColor(TX_BLACK,3);
-    txCircle(x,y,5);
-    txLine(x,y,x+30,y);
-    txLine(x+30,y,x+30,y+5);
-    txLine(x+25,y,x+25,y+3);
+    txCircle(x,y,5*razm);
+    txLine(x,y,x+30*razm,y);
+    txLine(x+30*razm,y,x+30*razm,y+5*razm);
+    txLine(x+25*razm,y,x+25*razm,y+3*razm);
     }
 
 
@@ -223,7 +223,7 @@ txCreateWindow (1200, 800);
     int xKey=550;
     int yKey=630;
     float razmMan = 1;
-
+    float razmKey = 1;
 while(xMan < 1100)
     {
         txBegin();
@@ -255,7 +255,7 @@ while(xMan > 500)
     drawChair();
     xMan-=10;
     drawPLate();
-    drawKey(xKey,yKey);
+    drawKey(xKey,yKey,1);
     drawMan(xMan,yMan,1.5);
     txEnd();
     txSleep(10);
@@ -274,7 +274,7 @@ while(xMan < 501 , ySpoon < 660)
     drawChair();
     ySpoon+=7;
     drawPLate();
-    drawKey(xKey,yKey);
+    drawKey(xKey,yKey,1);
     drawMan(xMan,yMan,1.5);
     txEnd();
     txSleep(10);
@@ -293,7 +293,7 @@ while(xMan < 501 , ySpoon < 660)
     drawSpoon(xSpoon,ySpoon);
     drawChair();
     drawPLate();
-    drawKey(xKey,yKey);
+    drawKey(xKey,yKey,1);
     drawMan(xMan,yMan,1.5);
     txEnd();
     yMan+=10;
@@ -312,14 +312,14 @@ while(xMan < 501 , ySpoon < 660)
     drawSpoon(xSpoon,ySpoon);
     drawChair();
     drawPLate();
-    drawKey(xKey,yKey);
+    drawKey(xKey,yKey,1);
     yKey-=3;
     drawMan(xMan,yMan,1.5);
     txEnd();
     txSleep(10);
     }
 
-    while()
+    while(xMan < 1000)
     {
     txBegin();
     drawWall();
@@ -331,17 +331,56 @@ while(xMan < 501 , ySpoon < 660)
     drawSpoon(xSpoon,ySpoon);
     drawChair();
     drawPLate();
-    drawKey(xKey,yKey);
+    drawKey(xKey,yKey,1);
     drawMan(xMan,yMan,1.5);
     txEnd();
-    /*xMan
-    yMan
-    xKey
-    yKey*/
+    xMan+=5;
+    yMan-=1;
+    xKey+=5;
+    yKey-=1;
     txSleep(10);
     }
+    while(yKey > 480)
+    {
+        txBegin();
+        drawSky();
+        drawLand();
+        drawSun(xSun,ySun);
+        for(int x=50; x<1200; x+=150)
+        {
+            drawWood (x,500);
+        }
+        drawHouse();
+        drawMan(xMan,yMan,razmMan);
+        drawKey(xKey,yKey,0.5);
+        drawCar(xCar,yCar);
+        yKey-=8;
+        xKey-=2;
+        txEnd();
+        txSleep(0);
 
+    }
 
+     while(xMan > 300)
+    {
+        txBegin();
+        drawSky();
+        drawLand();
+        drawSun(xSun,ySun);
+        for(int x=50; x<1200; x+=150)
+        {
+            drawWood (x,500);
+        }
+        drawHouse();
+        drawMan(xMan,yMan,razmMan);
+        drawKey(xKey,yKey,0.5);
+        drawCar(xCar,yCar);
+        xMan-=6;
+        xKey-=6;
+        txEnd();
+        txSleep(0);
+
+    }
 
 
 txTextCursor (false);
