@@ -1,11 +1,11 @@
 //========================================================================
 #include "TXLib.h"
 
-void drawSky()
+void drawSky(COLORREF Color)
 {
     //небо
-    txSetColor(TX_BLUE);
-    txSetFillColor(TX_BLUE);
+    txSetColor(Color);
+    txSetFillColor(Color);
     txRectangle(0,0,1200,500);
 }
 
@@ -107,8 +107,8 @@ void drawWood (int x, int y)
     txSetColor(TX_BLACK);
     txSetFillColor(TX_BROWN);
     txRectangle(x+570-550,y,x,y+310-590);
-    txSetColor(TX_LIGHTGREEN);
-    txSetFillColor(TX_LIGHTGREEN);
+    txSetColor(TX_GREEN,5);
+    txSetFillColor(TX_GREEN);
     txEllipse(x+620-550,y+490-590,x+500-550,y+220-590);
 
 
@@ -222,11 +222,25 @@ void drawWall()
     txRectangle(0,580,1200,680);
     txSetColor(TX_WHITE,5);
     txSetFillColor(TX_WHITE);
-    txRectangle(100,620,250,625);
-    txRectangle(300,620,450,625);
-    txRectangle(500,620,65,625);
-    txRectangle(550,620,700,625);
+    txRectangle(50,620,300,625);
+    txRectangle(350,620,550,625);
+    txRectangle(600,620,800,625);
+    txRectangle(850,620,1100,625);
 
+    }
+    void drawStart(int x, int y)
+    {
+    txSetColor(TX_WHITE);
+    txSetFillColor(TX_BLACK);
+    txSelectFont("Calibri", 50);
+    txDrawText(x-1200,y-800,x,y,"Потерянные ключи");
+    }
+    void drawEnd(int x, int y)
+    {
+    txSetColor(TX_WHITE);
+    txSetFillColor(TX_BLACK);
+    txSelectFont("Calibri", 50);
+    txDrawText(x-1200,y-800,x,y,"Конец");
     }
 int main()
 {
@@ -244,10 +258,24 @@ txCreateWindow (1200, 800);
     int yKey=630;
     float razmMan = 1;
     float razmKey = 1;
+    int xStart=1200;
+    int yStart=800;
+    int yEnd=1200;
+    int XEnd=800;
+
+    while(yStart > 400)
+    {
+        txBegin();
+        drawSky(TX_BLACK);
+        drawStart (xStart,yStart);
+        yStart-=5;
+        txEnd();
+        txSleep(10);
+    }
     while(xMan < 1100)
     {
         txBegin();
-        drawSky();
+        drawSky(TX_BLUE);
         drawLand();
         drawSun(xSun,ySun);
         for(int x=50; x<1200; x+=150)
@@ -364,7 +392,7 @@ txCreateWindow (1200, 800);
     while(yKey > 480)
     {
         txBegin();
-        drawSky();
+        drawSky(TX_BLUE);
         drawLand();
         drawSun(xSun,ySun);
         for(int x=50; x<1200; x+=150)
@@ -378,14 +406,13 @@ txCreateWindow (1200, 800);
         yKey=480;
         xKey=1030;
         txEnd();
-        txSleep(0);
 
     }
 
      while(xMan > 300)
     {
         txBegin();
-        drawSky();
+        drawSky(TX_BLUE);
         drawLand();
         drawSun(xSun,ySun);
         for(int x=50; x<1200; x+=150)
@@ -399,13 +426,13 @@ txCreateWindow (1200, 800);
         xMan-=6;
         xKey-=6;
         txEnd();
-        txSleep(0);
+        txSleep(10);
 
     }
      while(xCar > -400)
     {
         txBegin();
-        drawSky();
+        drawSky(TX_BLUE);
         drawLand();
         drawSun(xSun,ySun);
         for(int x=50; x<1200; x+=150)
@@ -416,13 +443,12 @@ txCreateWindow (1200, 800);
         drawCar(xCar,yCar);
         xCar-=10;
         txEnd();
-        txSleep(0);
+        txSleep(10);
 
     }
-    while(xCar < 1600)
-    {
+
         txBegin();
-        drawSky();
+        drawSky(TX_BLUE);
         drawLand2();
         drawRoad();
         drawSun(xSun,ySun);
@@ -430,10 +456,41 @@ txCreateWindow (1200, 800);
         {
             drawWood (x,500);
         }
+        drawCar(xCar,yCar);
+        xCar=1200;
+        yCar=550;
         txEnd();
-        txSleep(0);
+        txSleep(500);
+
+
+    while(xCar > -300)
+    {
+        txBegin();
+        drawSky(TX_BLUE);
+        drawLand2();
+        drawRoad();
+        drawSun(xSun,ySun);
+        for(int x=50; x<1200; x+=200)
+        {
+            drawWood (x,500);
+        }
+        drawCar(xCar,yCar);
+        xCar-=10;
+        txEnd();
+        txSleep(2);
 
     }
+    while(yEnd < 2400)
+    {
+    txBegin();
+    drawEnd(xEnd, yEnd);
+    drawSky(TX_BLACK);
+    yEnd+=5;
+    txEnd();
+    txSleep(10);
+    }
+    
+
 
 
 txTextCursor (false);
