@@ -6,7 +6,7 @@ void drawSky(COLORREF Color)
     //небо
     txSetColor(Color);
     txSetFillColor(Color);
-    txRectangle(0,0,1200,500);
+    txRectangle(0,0,1200,800);
 }
 
 void drawLand()
@@ -233,14 +233,35 @@ void drawWall()
     txSetColor(TX_WHITE);
     txSetFillColor(TX_BLACK);
     txSelectFont("Calibri", 50);
-    txDrawText(x-1200,y-800,x,y,"Потерянные ключи");
+    txDrawText(x-1200,y-800,x,y,"Потерянный ключ");
     }
     void drawEnd(int x, int y)
     {
     txSetColor(TX_WHITE);
     txSetFillColor(TX_BLACK);
-    txSelectFont("Calibri", 50);
+    txSelectFont("Calibri", 60);
     txDrawText(x-1200,y-800,x,y,"Конец");
+    }
+    void drawLand3()
+    {
+    txSetColor(TX_GREEN);
+    txSetFillColor(TX_GREEN);
+    POINT land[4]{{460,800}, {660,500}, {1200,500}, {1200,800}};
+    txPolygon(land, 4);
+    txSetColor(TX_CYAN);
+    txSetFillColor(TX_CYAN);
+    POINT land2[4]{{460,800}, {660,500}, {0,500}, {0,800}};
+    txPolygon(land2, 4);
+    }
+    void drawShip()
+    {
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_DARKGRAY);
+    POINT shipShild1[4]{{490,380}, {490,560}, {610,500}, {610,400}};
+    txPolygon(shipShild1, 4);
+    txSetFillColor(TX_LIGHTGRAY);
+    POINT shipShild2[4]{{490,380}, {490,560}, {380,500}, {380,400}};
+    txPolygon(shipShild2, 4);
     }
 int main()
 {
@@ -260,10 +281,10 @@ txCreateWindow (1200, 800);
     float razmKey = 1;
     int xStart=1200;
     int yStart=800;
-    int yEnd=0;
-    int xEnd=800;
+    int yEnd=800;
+    int xEnd=1200;
 
-    while(yStart > 400)
+    /*while(yStart > 400)
     {
         txBegin();
         drawSky(TX_BLACK);
@@ -479,7 +500,16 @@ txCreateWindow (1200, 800);
         txEnd();
         txSleep(2);
 
-    }
+    }*/
+    //while()
+    //{
+    //txbegin();
+    drawSky(TX_BLUE);
+    drawLand3();
+    drawShip();
+    //txEnd();
+    txSleep(5000);
+    //}
 
     while(yEnd < 2400)
     {
