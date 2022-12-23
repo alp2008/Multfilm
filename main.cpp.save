@@ -115,45 +115,47 @@ void drawWood (int x, int y)
 }
 
 void drawWall()
-    {
+{
     txSetColor(TX_BLACK);
     txSetFillColor(TX_BROWN);
     txRectangle (0,0,1200,600);
-    }
+}
 
-    void drawFloor()
-    {
+void drawFloor()
+{
     txSetColor(TX_BLACK);
     txSetFillColor(TX_BROWN);
     txRectangle (0,600,1200,800);
-    }
+}
 
-    void drawDoor()
-    {
+void drawDoor()
+{
     txSetColor(TX_BLACK,5);
     txSetFillColor(TX_ORANGE);
     txRectangle (900,220,1000,600);
     txLine(990,450,970,450);
-    }
-    void drawClock()
-    {
+}
+
+void drawClock()
+{
     txSetColor(TX_BLACK,5);
     txSetFillColor(TX_WHITE);
     txCircle(620,120,45);
     txLine(590,120,620,120);
     txLine(620,120,620,100);
-    }
+}
 
-    void drawWindow()
-    {
+void drawWindow()
+{
     txSetColor(TX_BLACK,5);
     txSetFillColor(TX_CYAN);
     txRectangle (470,385,200,200);
     txLine(330,200,330,385);
     txLine(470,290,200,290);
-    }
-    void drawChair()
-    {
+}
+
+void drawChair()
+{
     txSetColor(TX_BLACK,5);
     txLine(350,655,350,420);
     txLine(370,640,370,540);
@@ -165,10 +167,10 @@ void drawWall()
     txPolygon(chair1, 4);
     POINT chair2[4]{{350,540}, {440,540}, {460,510}, {370,510}};
     txPolygon(chair2, 4);
-    }
+}
 
-    void drawTable()
-    {
+void drawTable()
+{
     txSetFillColor(TX_ORANGE);
     txSetColor(TX_BLACK,5);
     txLine(470,660,470,500);
@@ -180,24 +182,26 @@ void drawWall()
     txLine(670,500,670,470);
     POINT table2[4]{{720,410}, {670,470}, {470,470}, {530,410}};
     txPolygon(table2, 4);
-    }
-   void drawSpoon(int x,int y)
-   {
+}
+
+void drawSpoon(int x,int y)
+{
    //x=535, y=450
    txSetColor(TX_GREY,5);
    txSetFillColor(TX_GREY);
    txLine(x-25,y,x-5,y);
    txCircle(x,y,5);
-   }
-    void drawPLate()
-    {
+}
+
+void drawPLate()
+{
     txSetColor(TX_GREY,5);
     txSetFillColor(TX_GREY);
     txCircle(540,430,10);
-    }
+}
 
-    void drawKey(int x,int y,float razm)
-    {
+void drawKey(int x,int y,float razm)
+{
     //x=550,y=630
     txSetFillColor(TX_BROWN);
     txSetColor(TX_BLACK,3);
@@ -205,18 +209,18 @@ void drawWall()
     txLine(x,y,x+30*razm,y);
     txLine(x+30*razm,y,x+30*razm,y+5*razm);
     txLine(x+25*razm,y,x+25*razm,y+3*razm);
-    }
+}
 
     //void drawtext (int x,int y)
-    void drawLand2()
-    {
+void drawLand2()
+{
     txSetColor(TX_GREEN);
     txSetFillColor(TX_GREEN);
     txRectangle(0,500,1200,800);
-    }
+}
 
-    void drawRoad()
-    {
+void drawRoad()
+{
     txSetColor(TX_BLACK,5);
     txSetFillColor(TX_GREY);
     txRectangle(0,580,1200,680);
@@ -227,23 +231,25 @@ void drawWall()
     txRectangle(600,620,800,625);
     txRectangle(850,620,1100,625);
 
-    }
-    void drawStart(int x, int y)
-    {
+}
+
+void drawStart(int x, int y)
+{
     txSetColor(TX_WHITE);
     txSetFillColor(TX_BLACK);
     txSelectFont("Calibri", 50);
     txDrawText(x-1200,y-800,x,y,"Потерянный ключ");
-    }
-    void drawEnd(int x, int y)
-    {
+}
+void drawEnd(int x, int y)
+{
     txSetColor(TX_WHITE);
     txSetFillColor(TX_BLACK);
     txSelectFont("Calibri", 60);
     txDrawText(x-1200,y-800,x,y,"Конец");
-    }
-    void drawLand3()
-    {
+}
+
+void drawLand3()
+{
     txSetColor(TX_GREEN);
     txSetFillColor(TX_GREEN);
     POINT land[4]{{460,800}, {660,500}, {1200,500}, {1200,800}};
@@ -252,17 +258,34 @@ void drawWall()
     txSetFillColor(TX_CYAN);
     POINT land2[4]{{460,800}, {660,500}, {0,500}, {0,800}};
     txPolygon(land2, 4);
-    }
-    void drawShip()
-    {
-    txSetColor(TX_BLACK);
+}
+
+void drawShip()
+{
+   txSetColor(TX_BLACK);
     txSetFillColor(TX_LIGHTGRAY);
-    POINT shipShild1[4]{{490,380}, {490,560}, {610,500}, {610,400}};
+    POINT ship[5]{{490,400}, {400,410}, {400,300}, {580,300}, {580,410}};
+    txPolygon(ship, 5);
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_DARKGRAY);
+    POINT shipShild1[4] = {{490,380}, {490,550}, {610,500}, {610,400}};
     txPolygon(shipShild1, 4);
     txSetFillColor(TX_LIGHTGRAY);
-    POINT shipShild2[4]{{490,380}, {490,560}, {}, {}};
+    POINT shipShild2[4] = {{490,380}, {490,550}, {380,500}, {380,400}};
     txPolygon(shipShild2, 4);
-    }
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_DARKGRAY);
+    txRectangle(590,310,390,280);
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_CYAN);
+    txCircle(440,340,15);
+    txCircle(490,340,15);
+    txCircle(540,340,15);
+    txSetColor(TX_BLACK);
+    txSetFillColor(TX_DARKGRAY);
+    txRectangle(610,470,670,500);
+}
+
 int main()
 {
 txCreateWindow (1200, 800);
